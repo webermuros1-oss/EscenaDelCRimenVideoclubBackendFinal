@@ -1,9 +1,9 @@
 package Inditex.EscenaDelCrimenVideoclub.App.controller;
 
 
-import Inditex.EscenaDelCrimenVideoclub.model.Movie;
+import Inditex.EscenaDelCrimenVideoclub.App.model.Movie;
 import org.springframework.web.bind.annotation.*;
-import Inditex.EscenaDelCrimenVideoclub.service.MovieService;
+import Inditex.EscenaDelCrimenVideoclub.App.service.MovieService;
 
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")

@@ -1,9 +1,9 @@
 package Inditex.EscenaDelCrimenVideoclub.App.service;
 
-import Inditex.EscenaDelCrimenVideoclub.model.Movie;
+import Inditex.EscenaDelCrimenVideoclub.App.model.Movie;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import Inditex.EscenaDelCrimenVideoclub.repository.MovieRepository;
+import Inditex.EscenaDelCrimenVideoclub.App.repository.MovieRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;

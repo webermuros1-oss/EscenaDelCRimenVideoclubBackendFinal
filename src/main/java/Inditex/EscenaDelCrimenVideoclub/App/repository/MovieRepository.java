@@ -1,7 +1,7 @@
 package Inditex.EscenaDelCrimenVideoclub.App.repository;
 
 
-import Inditex.EscenaDelCrimenVideoclub.model.Movie;
+import Inditex.EscenaDelCrimenVideoclub.App.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
