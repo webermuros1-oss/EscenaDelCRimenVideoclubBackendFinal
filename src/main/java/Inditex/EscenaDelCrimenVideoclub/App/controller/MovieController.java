@@ -4,6 +4,10 @@ package Inditex.EscenaDelCrimenVideoclub.App.controller;
 import Inditex.EscenaDelCrimenVideoclub.App.model.Movie;
 import org.springframework.web.bind.annotation.*;
 import Inditex.EscenaDelCrimenVideoclub.App.service.MovieService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import java.util.Optional;
+
 
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
@@ -17,31 +21,48 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public List<Movie> getAllMovie(){
+    public List<Movie> getAllMovie() {
         return movieService.getAll();
     }
 
     @PostMapping("/movies")
-    public Movie createMovie(@RequestBody Movie newMovie){
+    public Movie createMovie(@RequestBody Movie newMovie) {
         return movieService.addMovie(newMovie);
     }
 
     @DeleteMapping("/movies/{id}")
-    public void deleteMovieById(@PathVariable int id){
+    public void deleteMovieById(@PathVariable int id) {
         movieService.deleteMovie(id);
     }
 
     @PutMapping("/movies/{id}")
-    public Movie updateMovie(@PathVariable int id, @RequestBody Movie updatedMovie){
-        return movieService.updateMovie(id, updatedMovie);
+    public ResponseEntity<Movie> updateMovie(@PathVariable int id, @RequestBody Movie updatedMovie){
+        try{
+            Movie movie = movieService.updateMovie(id, updatedMovie);
+            return new ResponseEntity<>(movie, HttpStatus.OK);
+        }
+        catch(Exception exception){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
+
     @GetMapping("/movies/ASC")
-    public List<Movie> getAllByOrder(){
+    public List<Movie> getAllByOrder() {
         return movieService.getAllByOrder();
     }
 
     @GetMapping("/movies/category/{category}")
-    public List<Movie> getByCategory(@PathVariable String category){
+    public List<Movie> getByCategory(@PathVariable String category) {
         return movieService.getByCategory(category);
+    }
+
+    @GetMapping("/movies/{id}")
+    public ResponseEntity<Movie> findMovieById(@PathVariable int id) {
+        Optional<Movie> foundMovie = movieService.findMovie(id);
+        if (foundMovie.isPresent()) {
+            return new ResponseEntity<>(foundMovie.get(), HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
